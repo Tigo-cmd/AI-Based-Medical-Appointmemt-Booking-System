@@ -27,7 +27,7 @@ const DoctorDashboard: React.FC = () => {
   // 1️⃣ Fetch appointments for this doctor
   useEffect(() => {
     if (!doctorId) return;
-    fetch(`http://localhost:5000/api/appointments?doctorId=${doctorId}`)
+    fetch(`https://emmanueltigo.pythonanywhere.com/api/appointments?doctorId=${doctorId}`)
       .then(r => r.json())
       .then((data: Appointment[]) => setAppointments(data))
       .catch(console.error);
@@ -36,7 +36,7 @@ const DoctorDashboard: React.FC = () => {
   // 2️⃣ Fetch chat messages (all chats for this doctor)
   useEffect(() => {
     if (!doctorId) return;
-    fetch(`http://localhost:5000/api/chat?doctorId=${doctorId}`)
+    fetch(`https://emmanueltigo.pythonanywhere.com/api/chat?doctorId=${doctorId}`)
       .then(r => r.json())
       .then((json: { history: ChatMessage[] }) => setMessages(json.history))
       .catch(() => {
@@ -53,7 +53,7 @@ const DoctorDashboard: React.FC = () => {
   // 3️⃣ Handle status updates via API
   const handleUpdateAppointmentStatus = async (appointmentId: string, status: 'completed' | 'cancelled') => {
     try {
-      const res = await fetch(`http://localhost:5000/api/appointments/update/${appointmentId}`, {
+      const res = await fetch(`https://emmanueltigo.pythonanywhere.com/api/appointments/update/${appointmentId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status }),

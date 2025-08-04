@@ -17,7 +17,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ onBack }) => {
     const fetchHistory = async () => {
       if (!state.user?.id) return;
       try {
-        const res = await fetch(`http://localhost:5000/api/chat?userId=${state.user.id}`);
+        const res = await fetch(`https://emmanueltigo.pythonanywhere.com/api/chat?userId=${state.user.id}`);
         const json = await res.json();
         const chats: ChatMessage[] = Array.isArray(json.history) ? json.history : [];
         // Sort newest first

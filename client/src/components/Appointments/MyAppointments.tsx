@@ -22,7 +22,7 @@ const MyAppointments: React.FC<MyAppointmentsProps> = ({ onBack }) => {
   // Fetch this user's appointments via the path-based GET
   useEffect(() => {
     if (!state.user?.id) return;
-    fetch(`http://localhost:5000/api/appointments?userId=${state.user.id}`)
+    fetch(`https://emmanueltigo.pythonanywhere.com/api/appointments?userId=${state.user.id}`)
       .then(res => res.json())
       .then(setAppointments)
       .catch(err => console.error('Error fetching appointments:', err));
@@ -32,7 +32,7 @@ const MyAppointments: React.FC<MyAppointmentsProps> = ({ onBack }) => {
   const handleCancelAppointment = async (appointmentId: string) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/appointments/delete/${appointmentId}`,
+        `https://emmanueltigo.pythonanywhere.com/api/appointments/delete/${appointmentId}`,
         { method: 'DELETE' }
       );
       if (res.ok) {

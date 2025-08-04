@@ -20,7 +20,7 @@ const BookAppointment: React.FC<BookAppointmentProps> = ({ onBack }) => {
 
   // Fetch real doctors + merge availability
   useEffect(() => {
-    fetch('http://localhost:5000/api/doctors')
+    fetch('https://emmanueltigo.pythonanywhere.com/api/doctors')
       .then(res => res.json())
       .then((apiDoctors: Omit<Doctor, 'availability'>[]) => {
         const merged = apiDoctors.map(doc => {
@@ -51,7 +51,7 @@ const BookAppointment: React.FC<BookAppointmentProps> = ({ onBack }) => {
       };
 
       // POST to API
-      const res = await fetch('http://localhost:5000/api/appointments', {
+      const res = await fetch('https://emmanueltigo.pythonanywhere.com/api/appointments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
